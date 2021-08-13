@@ -1,5 +1,5 @@
 # Book settings
-title: Simulación
+title: INFO274: Simulación
 author: Pablo Huijse Heise 
 logo: logo.png
 only_build_toc_files: true
@@ -24,7 +24,7 @@ sphinx:
   extra_extensions: [bokeh.sphinxext.bokeh_plot]
   config:
     html_show_copyright: false
-    language: en
+    language: es
     myst_enable_extensions: 
     - amsmath
     - colon_fence
