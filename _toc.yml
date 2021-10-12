@@ -3,4 +3,4 @@ root: README
 chapters:
 - file: lectures/intro
 - file: lectures/monte_carlo
-  
+- file: lectures/random_walk
