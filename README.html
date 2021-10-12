@@ -5,7 +5,7 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>INFO274: Simulación &#8212; INFO274 Simulación</title>
+    <title>Introducción al método de Monte Carlo y a MCMC &#8212; Introducción al método de Monte Carlo y a MCMC</title>
     
   <link href="_static/css/theme.css" rel="stylesheet" />
   <link href="_static/css/index.c5995385ac14fb8791e8eb36b4908be2.css" rel="stylesheet" />
@@ -53,7 +53,7 @@
     <script async="async" src="_static/sphinx-thebe.js"></script>
     <link rel="index" title="Índice" href="genindex.html" />
     <link rel="search" title="Búsqueda" href="search.html" />
-    <link rel="next" title="Simulación, modelos generativos y método de Monte Carlo" href="lectures/lecture1.html" />
+    <link rel="next" title="Simulación y modelos generativos" href="lectures/intro.html" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="docsearch:language" content="en" />
     
@@ -72,10 +72,8 @@
         <div class="navbar-brand-box">
     <a class="navbar-brand text-wrap" href="index.html">
       
-      <img src="_static/logo.png" class="logo" alt="logo">
       
-      
-      <h1 class="site-logo" id="site-title">INFO274 Simulación</h1>
+      <h1 class="site-logo" id="site-title">Introducción al método de Monte Carlo y a MCMC</h1>
       
     </a>
 </div><form class="bd-search d-flex align-items-center" action="search.html" method="get">
@@ -85,8 +83,13 @@
     <div class="bd-toc-item active">
         <ul class="nav bd-sidenav">
  <li class="toctree-l1">
-  <a class="reference internal" href="lectures/lecture1.html">
-   Simulación, modelos generativos y método de Monte Carlo
+  <a class="reference internal" href="lectures/intro.html">
+   Simulación y modelos generativos
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="lectures/monte_carlo.html">
+   Método de Monte Carlo
   </a>
  </li>
 </ul>
@@ -141,6 +144,22 @@
 
             <!-- Source interaction buttons -->
 
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
+        aria-label="Connect with source repository"><i class="fab fa-github"></i></button>
+    <div class="dropdown-buttons sourcebuttons">
+        <a class="repository-button"
+            href="https://github.com/phuijse/INFO274"><button type="button" class="btn btn-secondary topbarbtn"
+                data-toggle="tooltip" data-placement="left" title="Repositorio de origen"><i
+                    class="fab fa-github"></i>repositorio</button></a>
+        <a class="issues-button"
+            href="https://github.com/phuijse/INFO274/issues/new?title=Issue%20on%20page%20%2FREADME.html&body=Your%20issue%20content%20here."><button
+                type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip" data-placement="left"
+                title="Abrir un problema"><i class="fas fa-lightbulb"></i>Tema abierto</button></a>
+        
+    </div>
+</div>
+
             <!-- Full screen (wrap in <a> to have style consistency -->
 
 <a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip"
@@ -166,8 +185,8 @@
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#bibliografia">
-   Bibliografía
+  <a class="reference internal nav-link" href="#referencias">
+   Referencias
   </a>
  </li>
 </ul>
@@ -181,34 +200,25 @@
         
               <div>
                 
-  <div class="section" id="info274-simulacion">
-<h1>INFO274: Simulación<a class="headerlink" href="#info274-simulacion" title="Enlazar permanentemente con este título">¶</a></h1>
-<p>Un curso de la carrera de Ingeniería Civil en Informática de la Universidad Austral de Chile</p>
-<p>Este repositorio tiene los contenidos de la Unidad 2 del curso a cargo de Pablo Huijse</p>
+  <div class="section" id="introduccion-al-metodo-de-monte-carlo-y-a-mcmc">
+<h1>Introducción al método de Monte Carlo y a MCMC<a class="headerlink" href="#introduccion-al-metodo-de-monte-carlo-y-a-mcmc" title="Enlazar permanentemente con este título">¶</a></h1>
+<p>Un libro virtual diseñado para los estudiantes del curso de Simulación (INFO274) de la carrera de Ingeniería Civil en Informática de la Universidad Austral de Chile. El libro fue escrito por <a class="reference external" href="https://phuijse.github.io/">Pablo Huijse</a> y está en continuo desarrollo. Si encuentras errores por favor deja un <em>issue</em> en el repositorio que contiene el libro: <a class="reference external" href="https://github.com/phuijse/MonteCarloBook">https://github.com/phuijse/MonteCarloBook</a>. El libro fue desarrollado utilizando <a class="reference external" href="https://jupyterbook.org/intro.html"><code class="docutils literal notranslate"><span class="pre">jupyter-book</span></code></a>.</p>
 <div class="section" id="contenidos">
 <h2>Contenidos<a class="headerlink" href="#contenidos" title="Enlazar permanentemente con este título">¶</a></h2>
 <ul class="simple">
 <li><p>Método de Monte Carlo.</p></li>
-<li><p>Caminata aleatoria</p></li>
+<li><p>Caminata aleatoria (random walk)</p></li>
 <li><p>Proceso de Markov</p></li>
 <li><p>Algoritmo de Metropolis</p></li>
 <li><p>Markov Chain Monte Carlo: Implementación y Diagnósticos</p></li>
 <li><p>Inferencia con modelos bayesianos usando MCMC</p></li>
 </ul>
 </div>
-<div class="section" id="bibliografia">
-<h2>Bibliografía<a class="headerlink" href="#bibliografia" title="Enlazar permanentemente con este título">¶</a></h2>
+<div class="section" id="referencias">
+<h2>Referencias<a class="headerlink" href="#referencias" title="Enlazar permanentemente con este título">¶</a></h2>
 <ul class="simple">
-<li><p>Obligatoria:</p>
-<ul>
 <li><p>Davidson-Pilon, C. (2015). Bayesian methods for hackers: probabilistic programming and Bayesian inference. Addison-Wesley Professional.  <a class="reference external" href="https://camdavidsonpilon.github.io/Probabilistic-Programming-and-Bayesian-Methods-for-Hackers/">https://camdavidsonpilon.github.io/Probabilistic-Programming-and-Bayesian-Methods-for-Hackers/</a></p></li>
-</ul>
-</li>
-<li><p>Complementaria:</p>
-<ul>
 <li><p>Downey, A. B. (2011). Think stats. O’Reilly Media, Inc. <a class="reference external" href="https://greenteapress.com/wp/think-stats-2e/">https://greenteapress.com/wp/think-stats-2e/</a></p></li>
-</ul>
-</li>
 </ul>
 </div>
 <div class="toctree-wrapper compound">
@@ -240,7 +250,7 @@
         
         <div class='prev-next-bottom'>
             
-    <a class='right-next' id="next-link" href="lectures/lecture1.html" title="next page">Simulación, modelos generativos y método de Monte Carlo</a>
+    <a class='right-next' id="next-link" href="lectures/intro.html" title="next page">Simulación y modelos generativos</a>
 
         </div>
         
