@@ -14,9 +14,9 @@ repository:
   url: https://github.com/phuijse/INFO274
 
 html:
-  home_page_in_navbar: false
-  use_repository_button: false
-  use_issues_button: false
+  home_page_in_navbar: true
+  use_repository_button: true
+  use_issues_button: true
   use_edit_page_button: false
   only_build_toc_files: true
 

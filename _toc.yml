@@ -1,5 +1,6 @@
 format: jb-book
 root: README
 chapters:
-- file: lectures/lecture1
+- file: lectures/intro
+- file: lectures/monte_carlo
   
