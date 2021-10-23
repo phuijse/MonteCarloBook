@@ -5,3 +5,4 @@ chapters:
 - file: lectures/monte_carlo
 - file: lectures/random_walk
 - file: lectures/markov
+- file: lectures/mcmc1
