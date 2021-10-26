@@ -2060,26 +2060,29 @@ r = \frac{ p(\theta^*)q(\theta_{t}|\theta^*) }{ p(\theta_t)q(\theta^*|\theta_{t}
 <li><p>Si su valor es pequeño la difusión será lenta y podrían requerirse muchas iteraciones</p></li>
 </ul>
 <p>Juntando lo anterior se tiene que el algoritmo completo es</p>
-<ol class="simple">
+<ol>
 <li><p>Escoger una distribución de propuestas simétrica</p></li>
 <li><p>Escoger un valor inicial <span class="math notranslate nohighlight">\(\theta_0\)</span></p></li>
 <li><p>Para <span class="math notranslate nohighlight">\(n=1,2,\ldots, N\)</span></p>
 <ol class="simple">
 <li><p>Muestrear <span class="math notranslate nohighlight">\(\theta^* \sim q(\theta_{t+1}|\theta_{t})\)</span></p></li>
 <li><p>Muestrear <span class="math notranslate nohighlight">\(u \sim U[0, 1]\)</span></p></li>
-<li><p>Luego si
-$<span class="math notranslate nohighlight">\(
-u &lt; \alpha(\theta^*|\theta_{t}) 
-\)</span><span class="math notranslate nohighlight">\(
-entonces
-\)</span><span class="math notranslate nohighlight">\(
-\theta_{t+1} = \theta^*
-\)</span><span class="math notranslate nohighlight">\(
-de lo contrario
-\)</span><span class="math notranslate nohighlight">\(
-\theta_{t+1} = \theta_{t}
-\)</span>$</p></li>
+<li><p>Luego si</p></li>
 </ol>
+<div class="math notranslate nohighlight">
+\[
+    u &lt; \alpha(\theta^*|\theta_{t}) 
+    \]</div>
+<p>entonces</p>
+<div class="math notranslate nohighlight">
+\[
+    \theta_{t+1} = \theta^*
+    \]</div>
+<p>de lo contrario</p>
+<div class="math notranslate nohighlight">
+\[
+    \theta_{t+1} = \theta_{t}
+    \]</div>
 </li>
 </ol>
 <p>A continuación se muestra una implementación en Python de este algoritmo.</p>
