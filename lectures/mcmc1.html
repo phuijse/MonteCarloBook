@@ -28,6 +28,7 @@
     <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
     <link rel="stylesheet" type="text/css" href="../_static/mystnb.css" />
     <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/proof.css" />
     <link rel="stylesheet" type="text/css" href="../_static/custom.css" />
     <link rel="stylesheet" type="text/css" href="../_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" />
     <link rel="stylesheet" type="text/css" href="../_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" />
@@ -1978,11 +1979,7 @@ p(x) = \int_\theta p(x, \theta) \,d\theta
 <p>es la evidencia o verosimilitud marginal que no depende de <span class="math notranslate nohighlight">\(\theta\)</span>. Si la dimensionalidad de <span class="math notranslate nohighlight">\(\theta\)</span> es grande la integral será muy difícil o derechamente imposible de calcular analiticamente.</p>
 <div class="admonition note">
 <p class="admonition-title">Nota</p>
-<p>En este caso sólo podemos evaluar la verosimilitud y el prior, es decir que podemos evaluar una cantidad proporcional al posterior</p>
-<div class="math notranslate nohighlight">
-\[
-p(\theta|x) \propto p(x|\theta) p(\theta)
-\]</div>
+<p>En este caso sólo podemos evaluar la verosimilitud y el prior, es decir que podemos evaluar una cantidad proporcional al posterior <span class="math notranslate nohighlight">\(p(\theta|x) \propto p(x|\theta) p(\theta)\)</span></p>
 </div>
 <p><strong>Espacios demasiado grandes</strong></p>
 <p>Otro problema de los espacios de alta dimensionalidad es que recorrer ese espacio completo de forma independiente puede ser muy lento o de plano infactible</p>
@@ -2060,14 +2057,18 @@ r = \frac{ p(\theta^*)q(\theta_{t}|\theta^*) }{ p(\theta_t)q(\theta^*|\theta_{t}
 <li><p>Si su valor es pequeño la difusión será lenta y podrían requerirse muchas iteraciones</p></li>
 </ul>
 <p>Juntando lo anterior se tiene que el algoritmo completo es</p>
+<div class="proof algorithm admonition" id="algorithm-0">
+<p class="admonition-title"><span>Algorithm </span> (Algoritmo de Metropolis)</p>
+<div class="algorithm-content section" id="proof-content">
+<p><strong>Entradas</strong> Dado el largo de la cadena <span class="math notranslate nohighlight">\(N\)</span> y una distribución de propuestas <span class="math notranslate nohighlight">\(q()\)</span></p>
+<p><strong>Salidas</strong> Una traza <span class="math notranslate nohighlight">\(\theta_t\)</span> con <span class="math notranslate nohighlight">\(t=0,\ldots, N\)</span></p>
 <ol>
-<li><p>Escoger una distribución de propuestas simétrica</p></li>
 <li><p>Escoger un valor inicial <span class="math notranslate nohighlight">\(\theta_0\)</span></p></li>
 <li><p>Para <span class="math notranslate nohighlight">\(n=1,2,\ldots, N\)</span></p>
 <ol class="simple">
 <li><p>Muestrear <span class="math notranslate nohighlight">\(\theta^* \sim q(\theta_{t+1}|\theta_{t})\)</span></p></li>
 <li><p>Muestrear <span class="math notranslate nohighlight">\(u \sim U[0, 1]\)</span></p></li>
-<li><p>Luego si</p></li>
+<li><p>Si</p></li>
 </ol>
 <div class="math notranslate nohighlight">
 \[
@@ -2085,7 +2086,8 @@ r = \frac{ p(\theta^*)q(\theta_{t}|\theta^*) }{ p(\theta_t)q(\theta^*|\theta_{t}
     \]</div>
 </li>
 </ol>
-<p>A continuación se muestra una implementación en Python de este algoritmo.</p>
+</div>
+</div><p>A continuación se muestra una implementación en Python de este algoritmo.</p>
 <ul class="simple">
 <li><p>Se utiliza una normal como distribución de propuestas</p></li>
 <li><p>Se precalculan los valores de la distribución de propuesta de la variable U para mayor eficiencia</p></li>
@@ -2131,6 +2133,9 @@ r = \frac{ p(\theta^*)q(\theta_{t}|\theta^*) }{ p(\theta_t)q(\theta^*|\theta_{t}
 r = \frac{p(\theta^*|\mathcal{D})}{p(\theta_t|\mathcal{D})} = \frac{p(\mathcal{D}|\theta^*)p(\theta^*)}{p(\mathcal{D}|\theta_t)p(\theta_t)} \frac{p(\mathcal{D})}{p(\mathcal{D})} = \frac{p(\mathcal{D}|\theta^*)p(\theta^*)}{p(\mathcal{D}|\theta_t)p(\theta_t)}
 \]</div>
 <p>Es decir que basta con conocer la verosimilitud y el prior. Pongamos en práctica esto con un ejemplo</p>
+<div class="proof example admonition" id="example-1">
+<p class="admonition-title"><span>Example </span></p>
+<div class="example-content section" id="proof-content">
 <p>Sea un conjunto de muestras con <span class="math notranslate nohighlight">\(N=5\)</span></p>
 <div class="math notranslate nohighlight">
 \[
@@ -2146,8 +2151,9 @@ X_1, X_2, \ldots, X_5|\theta \sim \mathcal{N}(\theta, \sigma^2=1)
 \[
 \theta \sim \mathcal{N}(\mu=5, \tau^2=10)
 \]</div>
-<p>y nos interesa encontrar el posterior <span class="math notranslate nohighlight">\(p(\theta|\mathcal{D})\)</span>. Intentemos simular este posterior con el algoritmo de Metropolis.</p>
-<p>Primero implementamos la verosimilitud y el prior</p>
+<p>Dada la verosimilitud y el prior anteriores simule el posterior <span class="math notranslate nohighlight">\(p(\theta|\mathcal{D})\)</span> utilizando el algoritmo de Metropolis.</p>
+</div>
+</div><p><strong>Solución:</strong> Primero implementamos la verosimilitud y el prior</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">prior</span> <span class="o">=</span> <span class="k">lambda</span> <span class="n">theta</span> <span class="p">:</span> <span class="n">scipy</span><span class="o">.</span><span class="n">stats</span><span class="o">.</span><span class="n">norm</span><span class="p">(</span><span class="n">loc</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span> <span class="n">scale</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="mi">10</span><span class="p">))</span><span class="o">.</span><span class="n">pdf</span><span class="p">(</span><span class="n">theta</span><span class="p">)</span>
