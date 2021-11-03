@@ -21,7 +21,8 @@ html:
   only_build_toc_files: true
 
 sphinx:
-  extra_extensions: [bokeh.sphinxext.bokeh_plot]
+  extra_extensions: 
+    - sphinx_proof
   config:
     html_show_copyright: false
     language: es
