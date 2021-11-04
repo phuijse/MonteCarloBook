@@ -225,13 +225,8 @@
   </a>
   <ul class="nav section-nav flex-column">
    <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#ejercicio-formativo-muestreo-por-importancia">
-     Ejercicio formativo: Muestreo por importancia
-    </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#problemas-de-is">
-     Problemas de IS
+    <a class="reference internal nav-link" href="#limitaciones-de-is">
+     Limitaciones de IS
     </a>
    </li>
   </ul>
@@ -1855,13 +1850,12 @@ roTBs2RqAAAAAElFTkSuQmCC'
 \end{split}\]</div>
 <p>donde <span class="math notranslate nohighlight">\(w_i = \frac{p(x)}{q(x)}\)</span> se llama la ponderación de importancia.</p>
 <p>Una distribución de importancia adecuada no sólo nos permite resolver el problema sino que tiende a presentar una varianza más baja que el estimador original de Monte Carlo. Notar que no es necesario escoger una distribución de importancia que sea igual a la distribución original, pero se debe tener en cuanta que que <span class="math notranslate nohighlight">\(q(x)\)</span> debe ser tal que <span class="math notranslate nohighlight">\(p(x)=0\)</span> cuando <span class="math notranslate nohighlight">\(q(x)=0\)</span></p>
-<div class="section" id="ejercicio-formativo-muestreo-por-importancia">
-<h3>Ejercicio formativo: Muestreo por importancia<a class="headerlink" href="#ejercicio-formativo-muestreo-por-importancia" title="Enlazar permanentemente con este título">¶</a></h3>
-<p>Sea una linea de teléfono de soporte tecnológico que recibe en promedio 2 llamadas por minuto</p>
-<blockquote>
-<div><p>¿Cuál es la probabilidad de que ellos tengan que esperar por lo menos 10 minutos para recibir 9 llamadas?</p>
-</div></blockquote>
-<p>Para modelar el tiempo de espera utilizaremos una distribución gamma</p>
+<div class="hint admonition">
+<p class="admonition-title"><strong>Ejercicio</strong></p>
+<p>Sea una linea de teléfono de soporte tecnológico que recibe en promedio 2 llamadas por minuto ¿Cuál es la probabilidad de que ellos tengan que esperar por lo menos 10 minutos para recibir 9 llamadas?</p>
+<p>Responda utilizando una simulación de Monte Carlo y muestreo por importancia. Utilice una distribución gamma para modelar los tiempos de espera.</p>
+</div>
+<p><strong>Solución:</strong> Primero definimos la distribución de los tiempo de espera como se indica</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">b</span> <span class="o">=</span> <span class="mf">2.</span> <span class="c1"># Eventos promedio por minuto</span>
@@ -1887,11 +1881,7 @@ roTBs2RqAAAAAElFTkSuQmCC'
 </div>
 </div>
 </div>
-<p>A continuación simulamos para Monte Carlo e IS usando número de muestras cada vez más grandes e inspeccionamos como evoluciona nuestro estimador del valor esperado de <span class="math notranslate nohighlight">\(f(x)\)</span>.</p>
-<div class="admonition note">
-<p class="admonition-title">Nota</p>
-<p>En este caso el problema tiene solución teórica conocida. Veamos como se compara MC e IS al resultado teórico.</p>
-</div>
+<p>A continuación simulamos para Monte Carlo e IS usando número de muestras cada vez más grandes e inspeccionamos como evoluciona nuestro estimador del valor esperado de <span class="math notranslate nohighlight">\(f(x)\)</span></p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Simulación</span>
@@ -1957,35 +1947,36 @@ roTBs2RqAAAAAElFTkSuQmCC'
 </div>
 <div class="admonition note">
 <p class="admonition-title">Nota</p>
-<p>El estimador basado en IS converge más rápido y con menos varianza que el estimador basado en Monte Carlo convencional</p>
+<p>En este caso el problema tiene solución teórica conocida (linea punteada). El estimador basado en IS converge más rápido y con menos varianza que el estimador basado en Monte Carlo convencional</p>
 </div>
-</div>
-<div class="section" id="problemas-de-is">
-<h3>Problemas de IS<a class="headerlink" href="#problemas-de-is" title="Enlazar permanentemente con este título">¶</a></h3>
-<p>Las técnicas de muestreo por importancia y muestreo por rechazo permiten calcular valores esperados de distribuciones que puedo evaluar pero no muestrear. También vimos que favorece en la disminución de la varianza del estimador.</p>
-<p>Pero existen casos más complicados aun, por ejemplo</p>
-<p><strong>No puedo muestrear ni evaluar la distribución de interés</strong></p>
-<p>Digamos que estamos interesados en la distribución de una variable <span class="math notranslate nohighlight">\(\theta\)</span> condicionada a un conjunto de observaciones <span class="math notranslate nohighlight">\(D\)</span>, esto corresponde al posterior <span class="math notranslate nohighlight">\(p(\theta|D)\)</span>. Sólo en contadas ocasiones este posterior corresponderá a una distribución teórica como las que hemos visto en este curso.</p>
+<div class="section" id="limitaciones-de-is">
+<h3>Limitaciones de IS<a class="headerlink" href="#limitaciones-de-is" title="Enlazar permanentemente con este título">¶</a></h3>
+<p>Las técnicas de muestreo por importancia (y muestreo por rechazo) permiten calcular valores esperados de distribuciones que puedo evaluar pero no muestrear. También vimos que favorece en la disminución de la varianza del estimador.</p>
+<p>Pero existen casos más complicados donde no es fácil utilizar IS</p>
+<ul class="simple">
+<li><p>Casos en que no es posible muestrear y tampoco evaluar la distribución de interés</p></li>
+<li><p>Casos en que el espacio tiene una dimensionalidad demasiado alta</p></li>
+</ul>
+<p>Digamos que estamos interesados en la distribución de una variable <span class="math notranslate nohighlight">\(\theta\)</span> condicionada a un conjunto de observaciones <span class="math notranslate nohighlight">\(D\)</span>, esto corresponde al posterior <span class="math notranslate nohighlight">\(p(\theta|D)\)</span>. Sólo en contadas ocasiones este posterior corresponderá a una distribución teórica conocida.</p>
 <p>Más en general tendremos</p>
 <div class="math notranslate nohighlight">
 \[
-p(\theta|x) = \frac{p(x|\theta) p(\theta)}{p(x)}
+p(\theta|D) = \frac{p(D|\theta) p(\theta)}{p(D)}
 \]</div>
-<p>donde <span class="math notranslate nohighlight">\(p(x|\theta)\)</span> es la verosimilitud, <span class="math notranslate nohighlight">\(p(\theta)\)</span> es el prior y</p>
+<p>donde <span class="math notranslate nohighlight">\(p(D|\theta)\)</span> es la verosimilitud, <span class="math notranslate nohighlight">\(p(\theta)\)</span> es el prior y</p>
 <div class="math notranslate nohighlight">
 \[
-p(x) = \int_\theta p(x, \theta) \,d\theta
+p(D) = \int_\theta p(D, \theta) \,d\theta
 \]</div>
-<p>es la evidencia o verosimilitud marginal que no depende de <span class="math notranslate nohighlight">\(\theta\)</span>. Si la dimensionalidad de <span class="math notranslate nohighlight">\(\theta\)</span> es grande la integral será muy difícil o derechamente imposible de calcular analiticamente.</p>
-<div class="admonition note">
-<p class="admonition-title">Nota</p>
-<p>En este caso sólo podemos evaluar la verosimilitud y el prior, es decir que podemos evaluar una cantidad proporcional al posterior <span class="math notranslate nohighlight">\(p(\theta|x) \propto p(x|\theta) p(\theta)\)</span></p>
+<p>es la evidencia o verosimilitud marginal que no depende de <span class="math notranslate nohighlight">\(\theta\)</span>.</p>
+<div class="admonition warning">
+<p class="admonition-title">Advertencia</p>
+<p>Si la dimensionalidad de <span class="math notranslate nohighlight">\(\theta\)</span> es grande la integral será muy difícil o derechamente imposible de calcular analíticamente. Si no podemos al menos evaluar <span class="math notranslate nohighlight">\(p(\theta|D)\)</span> no podemos usar IS</p>
 </div>
-<p><strong>Espacios demasiado grandes</strong></p>
 <p>Otro problema de los espacios de alta dimensionalidad es que recorrer ese espacio completo de forma independiente puede ser muy lento o de plano infactible</p>
-<div class="admonition tip">
-<p class="admonition-title">Truco</p>
-<p>A diferencia de IS, MCMC puede usarse aun cuando existen las dos dificultades anteriormente mencionadas</p>
+<div class="admonition hint">
+<p class="admonition-title">Consejo</p>
+<p>MCMC puede usarse aun cuando existan las dos dificultades anteriormente mencionadas</p>
 </div>
 </div>
 </div>
@@ -2133,9 +2124,8 @@ r = \frac{ p(\theta^*)q(\theta_{t}|\theta^*) }{ p(\theta_t)q(\theta^*|\theta_{t}
 r = \frac{p(\theta^*|\mathcal{D})}{p(\theta_t|\mathcal{D})} = \frac{p(\mathcal{D}|\theta^*)p(\theta^*)}{p(\mathcal{D}|\theta_t)p(\theta_t)} \frac{p(\mathcal{D})}{p(\mathcal{D})} = \frac{p(\mathcal{D}|\theta^*)p(\theta^*)}{p(\mathcal{D}|\theta_t)p(\theta_t)}
 \]</div>
 <p>Es decir que basta con conocer la verosimilitud y el prior. Pongamos en práctica esto con un ejemplo</p>
-<div class="proof example admonition" id="example-1">
-<p class="admonition-title"><span>Example </span></p>
-<div class="example-content section" id="proof-content">
+<div class="hint admonition">
+<p class="admonition-title"><strong>Ejercicio</strong></p>
 <p>Sea un conjunto de muestras con <span class="math notranslate nohighlight">\(N=5\)</span></p>
 <div class="math notranslate nohighlight">
 \[
@@ -2153,7 +2143,7 @@ X_1, X_2, \ldots, X_5|\theta \sim \mathcal{N}(\theta, \sigma^2=1)
 \]</div>
 <p>Dada la verosimilitud y el prior anteriores simule el posterior <span class="math notranslate nohighlight">\(p(\theta|\mathcal{D})\)</span> utilizando el algoritmo de Metropolis.</p>
 </div>
-</div><p><strong>Solución:</strong> Primero implementamos la verosimilitud y el prior</p>
+<p><strong>Solución:</strong> Primero implementamos la verosimilitud y el prior</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">prior</span> <span class="o">=</span> <span class="k">lambda</span> <span class="n">theta</span> <span class="p">:</span> <span class="n">scipy</span><span class="o">.</span><span class="n">stats</span><span class="o">.</span><span class="n">norm</span><span class="p">(</span><span class="n">loc</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span> <span class="n">scale</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="mi">10</span><span class="p">))</span><span class="o">.</span><span class="n">pdf</span><span class="p">(</span><span class="n">theta</span><span class="p">)</span>
