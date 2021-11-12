@@ -7,3 +7,4 @@ chapters:
 - file: lectures/markov
 - file: lectures/mcmc1
 - file: lectures/mcmc2
+- file: lectures/pyro
