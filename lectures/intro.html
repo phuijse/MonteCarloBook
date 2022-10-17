@@ -39,21 +39,23 @@
     <script src="../_static/jquery.js"></script>
     <script src="../_static/underscore.js"></script>
     <script src="../_static/doctools.js"></script>
-    <script src="../_static/togglebutton.js"></script>
     <script src="../_static/clipboard.min.js"></script>
     <script src="../_static/copybutton.js"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../_static/togglebutton.js"></script>
     <script src="../_static/translations.js"></script>
     <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
-    <script src="../_static/sphinx-book-theme.12a9622fbb08dcb3a2a40b2c02b83a57.js"></script>
-    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
-    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
-    <script async="async" src="https://unpkg.com/thebe@0.5.1/lib/index.js"></script>
-    <script>
-        const thebe_selector = ".thebe"
-        const thebe_selector_input = "pre"
-        const thebe_selector_output = ".output"
-    </script>
+    <script src="../_static/sphinx-book-theme.d59cb220de22ca1c485ebbdc042f0030.js"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
+const thebe_selector = ".thebe,.cell"
+const thebe_selector_input = "pre"
+const thebe_selector_output = ".output, .cell_output"
+</script>
     <script async="async" src="../_static/sphinx-thebe.js"></script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <link rel="index" title="Índice" href="../genindex.html" />
     <link rel="search" title="Búsqueda" href="../search.html" />
     <link rel="next" title="2. Introducción al Método de Monte Carlo" href="monte_carlo.html" />
@@ -112,7 +114,7 @@
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="random_walk.html">
-   3. Caminata aleatoria (random walk)
+   3. Caminatas aleatorias
   </a>
  </li>
  <li class="toctree-l1">
@@ -122,7 +124,7 @@
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="mcmc1.html">
-   5. Markov Chain Monte Carlo (MCMC)
+   5. Introducción a Markov Chain Monte Carlo
   </a>
  </li>
  <li class="toctree-l1">
@@ -181,7 +183,7 @@
                 data-placement="left">.ipynb</button></a>
         <!-- Download PDF via print -->
         <button type="button" id="download-print" class="btn btn-secondary topbarbtn" title="Imprimir en PDF"
-            onClick="window.print()" data-toggle="tooltip" data-placement="left">.pdf</button>
+                onclick="printPdf(this)" data-toggle="tooltip" data-placement="left">.pdf</button>
     </div>
 </div>
 
@@ -232,7 +234,7 @@
         </div>
 
         <!-- Table of contents -->
-        <div class="d-none d-md-block col-md-2 bd-toc show">
+        <div class="d-none d-md-block col-md-2 bd-toc show noprint">
             
             <div class="tocsection onthispage pt-5 pb-3">
                 <i class="fas fa-list"></i> Contenido
@@ -245,8 +247,8 @@
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#que-son-los-modelo-generativos">
-   1.2. ¿Qué son los modelo generativos?
+  <a class="reference internal nav-link" href="#que-son-los-modelo-generativos-en-estadistica">
+   1.2. ¿Qué son los modelo generativos en estadística?
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
@@ -262,7 +264,40 @@
 </div>
     <div id="main-content" class="row">
         <div class="col-12 col-md-9 pl-md-3 pr-md-0">
-        
+            <!-- Table of contents that is only displayed when printing the page -->
+            <div id="jb-print-docs-body" class="onlyprint">
+                <h1>Simulación y modelos generativos</h1>
+                <!-- Table of contents -->
+                <div id="print-main-content">
+                    <div id="jb-print-toc">
+                        
+                        <div>
+                            <h2> Contenido </h2>
+                        </div>
+                        <nav aria-label="Page">
+                            <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#que-es-y-para-que-sirve-simular">
+   1.1. ¿Qué es y para que sirve simular?
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#que-son-los-modelo-generativos-en-estadistica">
+   1.2. ¿Qué son los modelo generativos en estadística?
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#recordatorio-del-teorema-de-bayes">
+   1.3. Recordatorio del Teorema de Bayes
+  </a>
+ </li>
+</ul>
+
+                        </nav>
+                    </div>
+                </div>
+            </div>
+            
               <div>
                 
   <div class="cell docutils container">
@@ -2249,21 +2284,22 @@ roTBs2RqAAAAAElFTkSuQmCC'
 <div class="section" id="que-es-y-para-que-sirve-simular">
 <h2><span class="section-number">1.1. </span>¿Qué es y para que sirve simular?<a class="headerlink" href="#que-es-y-para-que-sirve-simular" title="Enlazar permanentemente con este título">¶</a></h2>
 <div class="admonition-definicion-simular admonition">
-<p class="admonition-title"><strong>Definición:</strong> Simular</p>
+<p class="admonition-title"><strong>Definición:</strong> Simular:</p>
 <ul class="simple">
 <li><p><a class="reference external" href="https://www.rae.es/dpd/simular">“Hacer que algo parezca real no siéndolo”</a></p></li>
 <li><p>Del latín <a class="reference external" href="https://es.wiktionary.org/wiki/simulaci%C3%B3n">simulâre: “copiar, representar”</a> o <a class="reference external" href="http://etimologias.dechile.net/?simulacio.n">simulatio “acción y efecto de imitar algo”</a></p></li>
 <li><p>Reproducir artificialmente un fenómeno o las relaciones entrada-salida de un sistema</p></li>
 </ul>
 </div>
-<p>Una simulación digital es la aplicación de un modelo computacional para la predicción de eventos físicos o el comportamiento de sistemas de ingeniería. Hoy en día las simulaciones son un pilar fundamental en ciencia.</p>
+<p>Una simulación digital es la aplicación de un modelo computacional para la predicción de eventos físicos o el comportamiento de sistemas de ingeniería.</p>
+<p>Hoy en día las simulaciones son un pilar fundamental en ciencia, como muestra la siguiente figura sobre la evolución de los paradigmas científicos.</p>
 <a class="reference internal image-reference" href="../_images/paradigms.jpg"><img alt="../_images/paradigms.jpg" src="../_images/paradigms.jpg" style="width: 600px;" /></a>
-<p>La simulación nos permite explorar nuevas teorías o diseñar nuevos experimentos para probar dichas teorias</p>
 <div class="admonition hint">
 <p class="admonition-title">Consejo</p>
-<p>Usando simulación podemos estudiar fenomenos que son imposibles o muy difíciles/caros/peligrosos/imprácticos de observar y/o medir</p>
+<p>La simulación nos permite explorar nuevas teorías o diseñar nuevos experimentos para probar dichas teorías.</p>
+<p>Usando simulaciones podemos estudiar fenómenos que son costosos, peligrosos, imprácticos de observar y/o medir.</p>
 </div>
-<p>En particular usando simulaciones podemos</p>
+<p>En particular usando simulaciones podemos:</p>
 <ul class="simple">
 <li><p>analizar un sistema antes de haberlo construido</p></li>
 <li><p>analizar situaciones a las que el sistema aun no ha sido expuesto</p></li>
@@ -2271,14 +2307,14 @@ roTBs2RqAAAAAElFTkSuQmCC'
 <li><p>analizar la influencia e inter-relaciones entre las variables del sistema y en consecuencia entender mejor su operación. <a class="reference external" href="https://en.wikipedia.org/wiki/Ceteris_paribus">Ceteris paribus</a></p></li>
 </ul>
 <p>Los simuladores son también ampliamente usados en educación.</p>
-<p>Con el rápido avance y la disminución en costos de la computación, la simulación digital se ha vuelto una herramienta clave en muchas disciplinas (eléctrica, mecánica, química, aeroespacial, nuclear, biomédica, materiales, etc)</p>
+<p>Con el rápido avance y la disminución en costos de la computación, la simulación digital se ha vuelto una herramienta clave en muchas disciplinas, .e.g. eléctrica, mecánica, química, aeroespacial, nuclear, biomédica, materiales.</p>
 <blockquote>
-<div><p><a class="reference external" href="http://www.mcs-uab.com/docs/NSF.Simluation-Based_Engineering_Science.2006.pdf">Los principales desafíos de los simuladores están en la validación, verificación y medición de incerteza de los modelos</a></p>
+<div><p><a class="reference external" href="http://www.mcs-uab.com/docs/NSF.Simluation-Based_Engineering_Science.2006.pdf">“Los principales desafíos de los simuladores están en la validación, verificación y medición de incerteza de los modelos”</a></p>
 </div></blockquote>
 <a class="reference internal image-reference" href="../_images/morpho.jpg"><img alt="../_images/morpho.jpg" src="../_images/morpho.jpg" style="width: 700px;" /></a>
 </div>
-<div class="section" id="que-son-los-modelo-generativos">
-<h2><span class="section-number">1.2. </span>¿Qué son los modelo generativos?<a class="headerlink" href="#que-son-los-modelo-generativos" title="Enlazar permanentemente con este título">¶</a></h2>
+<div class="section" id="que-son-los-modelo-generativos-en-estadistica">
+<h2><span class="section-number">1.2. </span>¿Qué son los modelo generativos en estadística?<a class="headerlink" href="#que-son-los-modelo-generativos-en-estadistica" title="Enlazar permanentemente con este título">¶</a></h2>
 <blockquote class="epigraph">
 <div><p><a class="reference external" href="https://jcs.biologists.org/content/joces/130/18/2941.full.pdf">What I cannot create, I do not understand</a></p>
 <p class="attribution">—Richard Feynman
@@ -2479,8 +2515,8 @@ p(y|x) = \frac{p(x|y) p(y)}{p(x)} = \frac{p(x|y) p(y)}{\int p(x|y) p(y) \,dy}
 
               </div>
               
-        
-            <!-- Previous / next buttons -->
+            
+                <!-- Previous / next buttons -->
 <div class='prev-next-area'> 
     <a class='left-prev' id="prev-link" href="../README.html" title="anterior página">
         <i class="fas fa-angle-left"></i>
@@ -2497,19 +2533,17 @@ p(y|x) = \frac{p(x|y) p(y)}{p(x)} = \frac{p(x|y) p(y)}{\int p(x|y) p(y) \,dy}
     <i class="fas fa-angle-right"></i>
     </a>
 </div>
-        
+            
         </div>
     </div>
     <footer class="footer">
-    <div class="container">
-      <p>
-        
-          Por Pablo Huijse Heise<br/>
-        
-            &copy; Derechos de autor 2021.<br/>
-      </p>
-    </div>
-  </footer>
+  <p>
+    
+      Por Pablo Huijse Heise<br/>
+    
+        &copy; Derechos de autor 2021.<br/>
+  </p>
+</footer>
 </main>
 
 
