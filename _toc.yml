@@ -5,6 +5,7 @@ parts:
     numbered: True
     chapters:
     - file: lectures/intro
+    - file: lectures/random_numbers
     - file: lectures/monte_carlo
     - file: lectures/random_walk
     - file: lectures/markov
