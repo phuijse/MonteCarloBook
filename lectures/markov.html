@@ -5,7 +5,7 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>4. Cadenas de Markov &#8212; Introducción al método de Monte Carlo y a MCMC</title>
+    <title>5. Cadenas de Markov &#8212; Introducción al método de Monte Carlo y a MCMC</title>
     
   <link href="../_static/css/theme.css" rel="stylesheet">
   <link href="../_static/css/index.ff1ffe594081f20da1ef19478df9384b.css" rel="stylesheet">
@@ -58,8 +58,8 @@ const thebe_selector_output = ".output, .cell_output"
     <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <link rel="index" title="Índice" href="../genindex.html" />
     <link rel="search" title="Búsqueda" href="../search.html" />
-    <link rel="next" title="5. Introducción a Markov Chain Monte Carlo" href="mcmc1.html" />
-    <link rel="prev" title="3. Caminatas aleatorias" href="random_walk.html" />
+    <link rel="next" title="6. Introducción a Markov Chain Monte Carlo" href="mcmc1.html" />
+    <link rel="prev" title="4. Caminatas aleatorias" href="random_walk.html" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="docsearch:language" content="es">
     
@@ -104,37 +104,42 @@ const thebe_selector_output = ".output, .cell_output"
 <ul class="current nav bd-sidenav">
  <li class="toctree-l1">
   <a class="reference internal" href="intro.html">
-   1. Simulación y modelos generativos
+   1. ¿Qué es y para qué sirve simular?
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="random_numbers.html">
+   2. Simulación y aleatoriedad
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="monte_carlo.html">
-   2. Introducción al Método de Monte Carlo
+   3. Introducción al Método de Monte Carlo
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="random_walk.html">
-   3. Caminatas aleatorias
+   4. Caminatas aleatorias
   </a>
  </li>
  <li class="toctree-l1 current active">
   <a class="current reference internal" href="#">
-   4. Cadenas de Markov
+   5. Cadenas de Markov
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="mcmc1.html">
-   5. Introducción a Markov Chain Monte Carlo
+   6. Introducción a Markov Chain Monte Carlo
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="mcmc2.html">
-   6. Calibración y diagnóstico en MCMC
+   7. Calibración y diagnóstico en MCMC
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="numpyro.html">
-   7. Programación probabilística
+   8. Programación probabilística
   </a>
  </li>
 </ul>
@@ -243,34 +248,34 @@ const thebe_selector_output = ".output, .cell_output"
                 <ul class="visible nav section-nav flex-column">
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#matriz-de-transicion-de-una-cadena-de-markov">
-   4.1. Matriz de transición de una cadena de Markov
+   5.1. Matriz de transición de una cadena de Markov
   </a>
   <ul class="nav section-nav flex-column">
    <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#ejemplo-prediccion-de-clima-con-cadena-de-dos-estados">
-     4.1.1. Ejemplo: Predicción de clima con cadena de dos estados
+     5.1.1. Ejemplo: Predicción de clima con cadena de dos estados
     </a>
    </li>
   </ul>
  </li>
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#estado-estacionario-de-la-cadena-de-markov">
-   4.2. Estado estacionario de la cadena de Markov
+   5.2. Estado estacionario de la cadena de Markov
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#algoritmo-general-para-simular-una-cadena-de-markov-discreta">
-   4.3. Algoritmo general para simular una cadena de Markov discreta
+   5.3. Algoritmo general para simular una cadena de Markov discreta
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#ley-de-los-grandes-numeros-para-variables-no-i-i-d">
-   4.4. Ley de los grandes números para variables no i.i.d.
+   5.4. Ley de los grandes números para variables no i.i.d.
   </a>
   <ul class="nav section-nav flex-column">
    <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#breves-notas-historicas">
-     4.4.1. Breves notas históricas
+     5.4.1. Breves notas históricas
     </a>
    </li>
   </ul>
@@ -297,34 +302,34 @@ const thebe_selector_output = ".output, .cell_output"
                             <ul class="visible nav section-nav flex-column">
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#matriz-de-transicion-de-una-cadena-de-markov">
-   4.1. Matriz de transición de una cadena de Markov
+   5.1. Matriz de transición de una cadena de Markov
   </a>
   <ul class="nav section-nav flex-column">
    <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#ejemplo-prediccion-de-clima-con-cadena-de-dos-estados">
-     4.1.1. Ejemplo: Predicción de clima con cadena de dos estados
+     5.1.1. Ejemplo: Predicción de clima con cadena de dos estados
     </a>
    </li>
   </ul>
  </li>
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#estado-estacionario-de-la-cadena-de-markov">
-   4.2. Estado estacionario de la cadena de Markov
+   5.2. Estado estacionario de la cadena de Markov
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#algoritmo-general-para-simular-una-cadena-de-markov-discreta">
-   4.3. Algoritmo general para simular una cadena de Markov discreta
+   5.3. Algoritmo general para simular una cadena de Markov discreta
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#ley-de-los-grandes-numeros-para-variables-no-i-i-d">
-   4.4. Ley de los grandes números para variables no i.i.d.
+   5.4. Ley de los grandes números para variables no i.i.d.
   </a>
   <ul class="nav section-nav flex-column">
    <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#breves-notas-historicas">
-     4.4.1. Breves notas históricas
+     5.4.1. Breves notas históricas
     </a>
    </li>
   </ul>
@@ -2319,7 +2324,7 @@ roTBs2RqAAAAAElFTkSuQmCC'
 </div>
 </div>
 <div class="tex2jax_ignore mathjax_ignore section" id="cadenas-de-markov">
-<h1><span class="section-number">4. </span>Cadenas de Markov<a class="headerlink" href="#cadenas-de-markov" title="Enlazar permanentemente con este título">¶</a></h1>
+<h1><span class="section-number">5. </span>Cadenas de Markov<a class="headerlink" href="#cadenas-de-markov" title="Enlazar permanentemente con este título">¶</a></h1>
 <p>En la lección anterior vimos caminatas aleatorias y definimos lo que es un proceso estocástico.  En lo que sigue nos restringiremos a procesos estocásticos que sólo puede tomar valores de un conjunto discreto <span class="math notranslate nohighlight">\(\mathcal{S}\)</span> en tiempos <span class="math notranslate nohighlight">\(n&gt;0\)</span> que también son discretos.</p>
 <p>Llamaremos a <span class="math notranslate nohighlight">\(\mathcal{S}=\{1, 2, \ldots, M\}\)</span> el conjunto de <strong>estados</strong> del proceso. Cada estado en particular se suele denotar por un número natural.</p>
 <p>Recordemos que para que un proceso estocástico sea considerado una <strong>cadena de Markov</strong>  se debe cumplir</p>
@@ -2333,7 +2338,7 @@ P(X_{n+1}|X_{n}, X_{n-1}, \ldots, X_{1}) = P(X_{n+1}|X_{n})
 <p>En una cadena de markov el estado futuro es independiente del pasado cuando conozco el presente</p>
 </div>
 <div class="section" id="matriz-de-transicion-de-una-cadena-de-markov">
-<h2><span class="section-number">4.1. </span>Matriz de transición de una cadena de Markov<a class="headerlink" href="#matriz-de-transicion-de-una-cadena-de-markov" title="Enlazar permanentemente con este título">¶</a></h2>
+<h2><span class="section-number">5.1. </span>Matriz de transición de una cadena de Markov<a class="headerlink" href="#matriz-de-transicion-de-una-cadena-de-markov" title="Enlazar permanentemente con este título">¶</a></h2>
 <p>Si la cadena de Markov tiene estados discretos y es homogenea, podemos escribir</p>
 <div class="math notranslate nohighlight">
 \[
@@ -2371,7 +2376,7 @@ P_{M1} &amp; P_{M2} &amp; \ldots &amp; P_{MM}\end{pmatrix}
 </div>
 <p>En el ejemplo de arriba podemos separar <span class="math notranslate nohighlight">\(\{0\}\)</span>, <span class="math notranslate nohighlight">\(\{1,2\}\)</span> y <span class="math notranslate nohighlight">\(\{3\}\)</span> en tres cadenas irreducibles <a class="footnote-reference brackets" href="#ruina" id="id1">1</a></p>
 <div class="section" id="ejemplo-prediccion-de-clima-con-cadena-de-dos-estados">
-<h3><span class="section-number">4.1.1. </span>Ejemplo: Predicción de clima con cadena de dos estados<a class="headerlink" href="#ejemplo-prediccion-de-clima-con-cadena-de-dos-estados" title="Enlazar permanentemente con este título">¶</a></h3>
+<h3><span class="section-number">5.1.1. </span>Ejemplo: Predicción de clima con cadena de dos estados<a class="headerlink" href="#ejemplo-prediccion-de-clima-con-cadena-de-dos-estados" title="Enlazar permanentemente con este título">¶</a></h3>
 <p>Digamos que queremos predecir el clima de Valdivia utilizando una cadena de Markov. Por lo tanto asumiremos que el clima de mañana es perfectamente predecible a partir del clima de hoy. Sean dos estados</p>
 <ul class="simple">
 <li><p><span class="math notranslate nohighlight">\(s_A\)</span> Lluvioso</p></li>
@@ -2471,7 +2476,7 @@ s_3 = s_2 P = s_1 P^2 = s_0 P^3
 </div>
 </div>
 <div class="section" id="estado-estacionario-de-la-cadena-de-markov">
-<h2><span class="section-number">4.2. </span>Estado estacionario de la cadena de Markov<a class="headerlink" href="#estado-estacionario-de-la-cadena-de-markov" title="Enlazar permanentemente con este título">¶</a></h2>
+<h2><span class="section-number">5.2. </span>Estado estacionario de la cadena de Markov<a class="headerlink" href="#estado-estacionario-de-la-cadena-de-markov" title="Enlazar permanentemente con este título">¶</a></h2>
 <p>Si la cadena de Markov converge a un estado, ese estado se llama <strong>estado estacionario</strong>. Por definición en un estado estacionario se cumple que</p>
 <div class="math notranslate nohighlight">
 \[
@@ -2576,7 +2581,7 @@ P = \begin{pmatrix} 1/2 &amp; 1/4 &amp; 1/4 \\
 <p>El elemento <span class="math notranslate nohighlight">\(\pi_j\)</span> (es decir <span class="math notranslate nohighlight">\(P_{ij}^\infty\)</span>) nos da la probabilidad de estar en <span class="math notranslate nohighlight">\(j\)</span> luego de infinitos pasos. Notar que el subíndice <span class="math notranslate nohighlight">\(i\)</span> ya no tiene importancia, es decir que el punto de partida ya no tiene relevancia.</p>
 </div>
 <div class="section" id="algoritmo-general-para-simular-una-cadena-de-markov-discreta">
-<h2><span class="section-number">4.3. </span>Algoritmo general para simular una cadena de Markov discreta<a class="headerlink" href="#algoritmo-general-para-simular-una-cadena-de-markov-discreta" title="Enlazar permanentemente con este título">¶</a></h2>
+<h2><span class="section-number">5.3. </span>Algoritmo general para simular una cadena de Markov discreta<a class="headerlink" href="#algoritmo-general-para-simular-una-cadena-de-markov-discreta" title="Enlazar permanentemente con este título">¶</a></h2>
 <p>Asumiendo que tenemos un sistema con un conjunto discreto de estados <span class="math notranslate nohighlight">\(\mathcal{S}\)</span> y que conocemos la matriz de probabilidades de transición <span class="math notranslate nohighlight">\(P\)</span> podemos simular su evolución con el siguiente algoritmo</p>
 <ol class="simple">
 <li><p>Setear <span class="math notranslate nohighlight">\(n=0\)</span> y seleccionar un estado inicial <span class="math notranslate nohighlight">\(X_n = i\)</span></p></li>
@@ -2770,7 +2775,7 @@ P = \begin{pmatrix} 1/2 &amp; 1/4 &amp; 1/4 \\
 </div>
 </div>
 <div class="section" id="ley-de-los-grandes-numeros-para-variables-no-i-i-d">
-<h2><span class="section-number">4.4. </span>Ley de los grandes números para variables no i.i.d.<a class="headerlink" href="#ley-de-los-grandes-numeros-para-variables-no-i-i-d" title="Enlazar permanentemente con este título">¶</a></h2>
+<h2><span class="section-number">5.4. </span>Ley de los grandes números para variables no i.i.d.<a class="headerlink" href="#ley-de-los-grandes-numeros-para-variables-no-i-i-d" title="Enlazar permanentemente con este título">¶</a></h2>
 <p>Previamente vimos que el promedio de un conjunto de <span class="math notranslate nohighlight">\(N\)</span> variables independientes e idénticamente distribuidas (iid) converge a su valor esperado cuando <span class="math notranslate nohighlight">\(N\)</span> es grande.</p>
 <p>Por ejemplo</p>
 <div class="math notranslate nohighlight">
@@ -2793,7 +2798,7 @@ P = \begin{pmatrix} 1/2 &amp; 1/4 &amp; 1/4 \\
 <p>El límite de observar la cadena por un tiempo largo es análogo al análisis de estadísticos estáticos sobre muestras grandes. Esto es el equivalente a la ley de los grandes números para el caso de la cadena de Markov</p>
 </div>
 <div class="section" id="breves-notas-historicas">
-<h3><span class="section-number">4.4.1. </span>Breves notas históricas<a class="headerlink" href="#breves-notas-historicas" title="Enlazar permanentemente con este título">¶</a></h3>
+<h3><span class="section-number">5.4.1. </span>Breves notas históricas<a class="headerlink" href="#breves-notas-historicas" title="Enlazar permanentemente con este título">¶</a></h3>
 <ul class="simple">
 <li><p><strong>La primera ley de los grandes números:</strong> <a class="reference external" href="https://en.wikipedia.org/wiki/Jacob_Bernoulli">Jacob Bernoulli</a> mostró la primera versión de la Ley de los grandes números en su Ars Conjectandi en 1713. Esta primera versión parte del supuesto de que las VAs son iid. Bernoulli era un firme creyente del destino, se oponía al libre albedrío y abogaba por el determinismo en los fenómenos aleatorios.</p></li>
 <li><p><strong>La segunda ley de los grandes números:</strong> En 1913 el matemático ruso <a class="reference external" href="https://en.wikipedia.org/wiki/Andrey_Markov">Andrei Markov</a> celebró el bicentenario de la famosa prueba de Bernoulli organizando un simposio donde presentó su nueva versión de la Ley de los grandes números que aplica sobre la clase de procesos estocásticos que hoy llamamos procesos de Markov, de esta forma extendiendo el resultado de Bernoulli a un caso que no es iid.</p></li>
@@ -2838,13 +2843,13 @@ P = \begin{pmatrix} 1/2 &amp; 1/4 &amp; 1/4 \\
         <i class="fas fa-angle-left"></i>
         <div class="prev-next-info">
             <p class="prev-next-subtitle">anterior</p>
-            <p class="prev-next-title"><span class="section-number">3. </span>Caminatas aleatorias</p>
+            <p class="prev-next-title"><span class="section-number">4. </span>Caminatas aleatorias</p>
         </div>
     </a>
     <a class='right-next' id="next-link" href="mcmc1.html" title="siguiente página">
     <div class="prev-next-info">
         <p class="prev-next-subtitle">siguiente</p>
-        <p class="prev-next-title"><span class="section-number">5. </span>Introducción a Markov Chain Monte Carlo</p>
+        <p class="prev-next-title"><span class="section-number">6. </span>Introducción a Markov Chain Monte Carlo</p>
     </div>
     <i class="fas fa-angle-right"></i>
     </a>

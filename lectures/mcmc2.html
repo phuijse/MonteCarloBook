@@ -5,7 +5,7 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>6. Calibración y diagnóstico en MCMC &#8212; Introducción al método de Monte Carlo y a MCMC</title>
+    <title>7. Calibración y diagnóstico en MCMC &#8212; Introducción al método de Monte Carlo y a MCMC</title>
     
   <link href="../_static/css/theme.css" rel="stylesheet">
   <link href="../_static/css/index.ff1ffe594081f20da1ef19478df9384b.css" rel="stylesheet">
@@ -58,8 +58,8 @@ const thebe_selector_output = ".output, .cell_output"
     <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <link rel="index" title="Índice" href="../genindex.html" />
     <link rel="search" title="Búsqueda" href="../search.html" />
-    <link rel="next" title="7. Programación probabilística" href="numpyro.html" />
-    <link rel="prev" title="5. Introducción a Markov Chain Monte Carlo" href="mcmc1.html" />
+    <link rel="next" title="8. Programación probabilística" href="numpyro.html" />
+    <link rel="prev" title="6. Introducción a Markov Chain Monte Carlo" href="mcmc1.html" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="docsearch:language" content="es">
     
@@ -104,37 +104,42 @@ const thebe_selector_output = ".output, .cell_output"
 <ul class="current nav bd-sidenav">
  <li class="toctree-l1">
   <a class="reference internal" href="intro.html">
-   1. Simulación y modelos generativos
+   1. ¿Qué es y para qué sirve simular?
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="random_numbers.html">
+   2. Simulación y aleatoriedad
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="monte_carlo.html">
-   2. Introducción al Método de Monte Carlo
+   3. Introducción al Método de Monte Carlo
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="random_walk.html">
-   3. Caminatas aleatorias
+   4. Caminatas aleatorias
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="markov.html">
-   4. Cadenas de Markov
+   5. Cadenas de Markov
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="mcmc1.html">
-   5. Introducción a Markov Chain Monte Carlo
+   6. Introducción a Markov Chain Monte Carlo
   </a>
  </li>
  <li class="toctree-l1 current active">
   <a class="current reference internal" href="#">
-   6. Calibración y diagnóstico en MCMC
+   7. Calibración y diagnóstico en MCMC
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="numpyro.html">
-   7. Programación probabilística
+   8. Programación probabilística
   </a>
  </li>
 </ul>
@@ -243,32 +248,32 @@ const thebe_selector_output = ".output, .cell_output"
                 <ul class="visible nav section-nav flex-column">
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#tiempo-de-mezcla-mixing-time">
-   6.1. Tiempo de mezcla (mixing time)
+   7.1. Tiempo de mezcla (mixing time)
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#autocorrelacion-en-la-cadena-y-numero-de-muestras-efectivo">
-   6.2. Autocorrelación en la cadena y número de muestras efectivo
+   7.2. Autocorrelación en la cadena y número de muestras efectivo
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#calibrando-mcmc-en-base-a-la-autocorrelacion-de-la-traza">
-   6.3. Calibrando MCMC en base a la autocorrelación de la traza
+   7.3. Calibrando MCMC en base a la autocorrelación de la traza
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#estadistico-gelman-rubin">
-   6.4. Estadístico Gelman-Rubin
+   7.4. Estadístico Gelman-Rubin
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#thinning-adelgazamiento">
-   6.5. Thinning (adelgazamiento)
+   7.5. Thinning (adelgazamiento)
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#material-extra">
-   6.6. Material extra
+   7.6. Material extra
   </a>
  </li>
 </ul>
@@ -293,32 +298,32 @@ const thebe_selector_output = ".output, .cell_output"
                             <ul class="visible nav section-nav flex-column">
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#tiempo-de-mezcla-mixing-time">
-   6.1. Tiempo de mezcla (mixing time)
+   7.1. Tiempo de mezcla (mixing time)
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#autocorrelacion-en-la-cadena-y-numero-de-muestras-efectivo">
-   6.2. Autocorrelación en la cadena y número de muestras efectivo
+   7.2. Autocorrelación en la cadena y número de muestras efectivo
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#calibrando-mcmc-en-base-a-la-autocorrelacion-de-la-traza">
-   6.3. Calibrando MCMC en base a la autocorrelación de la traza
+   7.3. Calibrando MCMC en base a la autocorrelación de la traza
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#estadistico-gelman-rubin">
-   6.4. Estadístico Gelman-Rubin
+   7.4. Estadístico Gelman-Rubin
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#thinning-adelgazamiento">
-   6.5. Thinning (adelgazamiento)
+   7.5. Thinning (adelgazamiento)
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#material-extra">
-   6.6. Material extra
+   7.6. Material extra
   </a>
  </li>
 </ul>
@@ -2311,10 +2316,10 @@ roTBs2RqAAAAAElFTkSuQmCC'
 </div>
 </div>
 <div class="tex2jax_ignore mathjax_ignore section" id="calibracion-y-diagnostico-en-mcmc">
-<h1><span class="section-number">6. </span>Calibración y diagnóstico en MCMC<a class="headerlink" href="#calibracion-y-diagnostico-en-mcmc" title="Enlazar permanentemente con este título">¶</a></h1>
+<h1><span class="section-number">7. </span>Calibración y diagnóstico en MCMC<a class="headerlink" href="#calibracion-y-diagnostico-en-mcmc" title="Enlazar permanentemente con este título">¶</a></h1>
 <p>En esta lección nos enfocaremos en como diagnósticar un correcto resultado de un algoritmo de tipo MCMC. Para esto revisaremos algunas métricas y criterios ampliamente usados y utilizaremos para calibrar el algoritmo de Metropolis que vimos la lección anterior.</p>
 <div class="section" id="tiempo-de-mezcla-mixing-time">
-<h2><span class="section-number">6.1. </span>Tiempo de mezcla (mixing time)<a class="headerlink" href="#tiempo-de-mezcla-mixing-time" title="Enlazar permanentemente con este título">¶</a></h2>
+<h2><span class="section-number">7.1. </span>Tiempo de mezcla (mixing time)<a class="headerlink" href="#tiempo-de-mezcla-mixing-time" title="Enlazar permanentemente con este título">¶</a></h2>
 <p>Previamente hemos visto como diseñar una cadena de Markov finita tal que converja a una distribución estacionaria <span class="math notranslate nohighlight">\(\pi\)</span> de nuestro interés. Pero, ¿Cuánto debemos esperar para que ocurra la convergencia?</p>
 <p>El tiempo de mezcla para una cadena de Markov irreducible y aperiódica se define como</p>
 <div class="math notranslate nohighlight">
@@ -2346,7 +2351,7 @@ P^n = \sum_{i=1}^\mathcal{S} \alpha_i \lambda_i^n = \pi + \sum_{i=2}^\mathcal{S}
 </div>
 </div>
 <div class="section" id="autocorrelacion-en-la-cadena-y-numero-de-muestras-efectivo">
-<h2><span class="section-number">6.2. </span>Autocorrelación en la cadena y número de muestras efectivo<a class="headerlink" href="#autocorrelacion-en-la-cadena-y-numero-de-muestras-efectivo" title="Enlazar permanentemente con este título">¶</a></h2>
+<h2><span class="section-number">7.2. </span>Autocorrelación en la cadena y número de muestras efectivo<a class="headerlink" href="#autocorrelacion-en-la-cadena-y-numero-de-muestras-efectivo" title="Enlazar permanentemente con este título">¶</a></h2>
 <p>Como vimos en la lección anterior el algoritmo MCMC converge asintóticamente a la distribución estacionaria. Pero en la práctica no podemos esperar hasta <span class="math notranslate nohighlight">\(n\to \infty\)</span></p>
 <blockquote>
 <div><p>¿Cómo podemos confirmar si nuestro algoritmo MCMC ha convergido?</p>
@@ -2363,7 +2368,7 @@ P^n = \sum_{i=1}^\mathcal{S} \alpha_i \lambda_i^n = \pi + \sum_{i=2}^\mathcal{S}
 <a class="reference internal image-reference" href="../_images/autocorr.png"><img alt="../_images/autocorr.png" src="../_images/autocorr.png" style="width: 700px;" /></a>
 </div>
 <div class="section" id="calibrando-mcmc-en-base-a-la-autocorrelacion-de-la-traza">
-<h2><span class="section-number">6.3. </span>Calibrando MCMC en base a la autocorrelación de la traza<a class="headerlink" href="#calibrando-mcmc-en-base-a-la-autocorrelacion-de-la-traza" title="Enlazar permanentemente con este título">¶</a></h2>
+<h2><span class="section-number">7.3. </span>Calibrando MCMC en base a la autocorrelación de la traza<a class="headerlink" href="#calibrando-mcmc-en-base-a-la-autocorrelacion-de-la-traza" title="Enlazar permanentemente con este título">¶</a></h2>
 <p>En la lección pasada vimos que el algoritmo de Metropolis tiene un hiperparámetro  <span class="math notranslate nohighlight">\(\sigma_\epsilon\)</span> que corresponde a la desviación estándar de la distribución de propuestas.</p>
 <div class="admonition note">
 <p class="admonition-title">Nota</p>
@@ -2516,7 +2521,7 @@ Para 10.0, el número de muestras efectivo es 89.4863
 <p>Si observamos la función <code class="docutils literal notranslate"><span class="pre">metropolis</span></code> veremos que la variable <code class="docutils literal notranslate"><span class="pre">ar</span></code> se utiliza para calcular la fracción de aceptación. Nuevamente es <code class="docutils literal notranslate"><span class="pre">sigma_eps=2.0</span></code> el que está más cercano a la fracción de aceptación óptima.</p>
 </div>
 <div class="section" id="estadistico-gelman-rubin">
-<h2><span class="section-number">6.4. </span>Estadístico Gelman-Rubin<a class="headerlink" href="#estadistico-gelman-rubin" title="Enlazar permanentemente con este título">¶</a></h2>
+<h2><span class="section-number">7.4. </span>Estadístico Gelman-Rubin<a class="headerlink" href="#estadistico-gelman-rubin" title="Enlazar permanentemente con este título">¶</a></h2>
 <p>Otra forma de estudiar la convergencia es utilizando el estadístico Gelman Rubin, también conocido como <span class="math notranslate nohighlight">\(\hat r\)</span>. Para ocuparlo se deben entrenar al menos dos cadenas (de igual largo) para cada configuración de hiperparámetros.</p>
 <p>El estadístico</p>
 <div class="math notranslate nohighlight">
@@ -2609,12 +2614,12 @@ Para 10.0, el número de muestras efectivo es 89.4863
 </div>
 </div>
 <div class="section" id="thinning-adelgazamiento">
-<h2><span class="section-number">6.5. </span>Thinning (adelgazamiento)<a class="headerlink" href="#thinning-adelgazamiento" title="Enlazar permanentemente con este título">¶</a></h2>
+<h2><span class="section-number">7.5. </span>Thinning (adelgazamiento)<a class="headerlink" href="#thinning-adelgazamiento" title="Enlazar permanentemente con este título">¶</a></h2>
 <p>El “adelgazamiento” es una técnica para disminuir la autocorrelación de la traza. Consiste en submuestrear la traza, reteniendo sólo cada <span class="math notranslate nohighlight">\(t\)</span> muestras, donde <span class="math notranslate nohighlight">\(t\)</span> es el “intervalo de adelgazamiento”. La idea es escoger este intervalo estudiando la función de autocorrelación</p>
 <p>Debido a la gran cantidad de muestras que se podrían descartar es preferible ajustar adecuadamente el paso de las propuestas por sobre esta técnica</p>
 </div>
 <div class="section" id="material-extra">
-<h2><span class="section-number">6.6. </span>Material extra<a class="headerlink" href="#material-extra" title="Enlazar permanentemente con este título">¶</a></h2>
+<h2><span class="section-number">7.6. </span>Material extra<a class="headerlink" href="#material-extra" title="Enlazar permanentemente con este título">¶</a></h2>
 <p>La siguiente es una lista de artículos complementarios si desean profundizar en algunos de los tópicos de esta lección</p>
 <ul class="simple">
 <li><p><a class="reference external" href="https://www.cl.cam.ac.uk/teaching/1819/Probablty/materials/Lecture9_handout.pdf">Valores propios</a> y <a class="reference external" href="https://www.cl.cam.ac.uk/teaching/1920/Probablty/materials/Lecture10.pdf">cotas en los tiempos de mezcla</a></p></li>
@@ -2653,13 +2658,13 @@ Para 10.0, el número de muestras efectivo es 89.4863
         <i class="fas fa-angle-left"></i>
         <div class="prev-next-info">
             <p class="prev-next-subtitle">anterior</p>
-            <p class="prev-next-title"><span class="section-number">5. </span>Introducción a Markov Chain Monte Carlo</p>
+            <p class="prev-next-title"><span class="section-number">6. </span>Introducción a Markov Chain Monte Carlo</p>
         </div>
     </a>
     <a class='right-next' id="next-link" href="numpyro.html" title="siguiente página">
     <div class="prev-next-info">
         <p class="prev-next-subtitle">siguiente</p>
-        <p class="prev-next-title"><span class="section-number">7. </span>Programación probabilística</p>
+        <p class="prev-next-title"><span class="section-number">8. </span>Programación probabilística</p>
     </div>
     <i class="fas fa-angle-right"></i>
     </a>

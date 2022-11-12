@@ -5,7 +5,7 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>5. Introducción a Markov Chain Monte Carlo &#8212; Introducción al método de Monte Carlo y a MCMC</title>
+    <title>6. Introducción a Markov Chain Monte Carlo &#8212; Introducción al método de Monte Carlo y a MCMC</title>
     
   <link href="../_static/css/theme.css" rel="stylesheet">
   <link href="../_static/css/index.ff1ffe594081f20da1ef19478df9384b.css" rel="stylesheet">
@@ -58,8 +58,8 @@ const thebe_selector_output = ".output, .cell_output"
     <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <link rel="index" title="Índice" href="../genindex.html" />
     <link rel="search" title="Búsqueda" href="../search.html" />
-    <link rel="next" title="6. Calibración y diagnóstico en MCMC" href="mcmc2.html" />
-    <link rel="prev" title="4. Cadenas de Markov" href="markov.html" />
+    <link rel="next" title="7. Calibración y diagnóstico en MCMC" href="mcmc2.html" />
+    <link rel="prev" title="5. Cadenas de Markov" href="markov.html" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="docsearch:language" content="es">
     
@@ -104,37 +104,42 @@ const thebe_selector_output = ".output, .cell_output"
 <ul class="current nav bd-sidenav">
  <li class="toctree-l1">
   <a class="reference internal" href="intro.html">
-   1. Simulación y modelos generativos
+   1. ¿Qué es y para qué sirve simular?
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="random_numbers.html">
+   2. Simulación y aleatoriedad
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="monte_carlo.html">
-   2. Introducción al Método de Monte Carlo
+   3. Introducción al Método de Monte Carlo
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="random_walk.html">
-   3. Caminatas aleatorias
+   4. Caminatas aleatorias
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="markov.html">
-   4. Cadenas de Markov
+   5. Cadenas de Markov
   </a>
  </li>
  <li class="toctree-l1 current active">
   <a class="current reference internal" href="#">
-   5. Introducción a Markov Chain Monte Carlo
+   6. Introducción a Markov Chain Monte Carlo
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="mcmc2.html">
-   6. Calibración y diagnóstico en MCMC
+   7. Calibración y diagnóstico en MCMC
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="numpyro.html">
-   7. Programación probabilística
+   8. Programación probabilística
   </a>
  </li>
 </ul>
@@ -243,36 +248,36 @@ const thebe_selector_output = ".output, .cell_output"
                 <ul class="visible nav section-nav flex-column">
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#monte-carlo-y-muestreo-por-importancia-is">
-   5.1. Monte Carlo y muestreo por importancia (IS)
+   6.1. Monte Carlo y muestreo por importancia (IS)
   </a>
   <ul class="nav section-nav flex-column">
    <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#limitaciones-de-is">
-     5.1.1. Limitaciones de IS
+     6.1.1. Limitaciones de IS
     </a>
    </li>
   </ul>
  </li>
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#intuicion-de-mcmc">
-   5.2. Intuición de MCMC
+   6.2. Intuición de MCMC
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#algoritmo-de-metropolis">
-   5.3. Algoritmo de Metropolis
+   6.3. Algoritmo de Metropolis
   </a>
   <ul class="nav section-nav flex-column">
    <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#algoritmo-de-metropolis-hastings">
-     5.3.1. Algoritmo de Metropolis-Hastings
+     6.3.1. Algoritmo de Metropolis-Hastings
     </a>
    </li>
   </ul>
  </li>
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#mcmc-para-estimar-posteriors">
-   5.4. MCMC para estimar posteriors
+   6.4. MCMC para estimar posteriors
   </a>
  </li>
 </ul>
@@ -297,36 +302,36 @@ const thebe_selector_output = ".output, .cell_output"
                             <ul class="visible nav section-nav flex-column">
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#monte-carlo-y-muestreo-por-importancia-is">
-   5.1. Monte Carlo y muestreo por importancia (IS)
+   6.1. Monte Carlo y muestreo por importancia (IS)
   </a>
   <ul class="nav section-nav flex-column">
    <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#limitaciones-de-is">
-     5.1.1. Limitaciones de IS
+     6.1.1. Limitaciones de IS
     </a>
    </li>
   </ul>
  </li>
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#intuicion-de-mcmc">
-   5.2. Intuición de MCMC
+   6.2. Intuición de MCMC
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#algoritmo-de-metropolis">
-   5.3. Algoritmo de Metropolis
+   6.3. Algoritmo de Metropolis
   </a>
   <ul class="nav section-nav flex-column">
    <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#algoritmo-de-metropolis-hastings">
-     5.3.1. Algoritmo de Metropolis-Hastings
+     6.3.1. Algoritmo de Metropolis-Hastings
     </a>
    </li>
   </ul>
  </li>
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#mcmc-para-estimar-posteriors">
-   5.4. MCMC para estimar posteriors
+   6.4. MCMC para estimar posteriors
   </a>
  </li>
 </ul>
@@ -2319,13 +2324,13 @@ roTBs2RqAAAAAElFTkSuQmCC'
 </div>
 </div>
 <div class="tex2jax_ignore mathjax_ignore section" id="introduccion-a-markov-chain-monte-carlo">
-<h1><span class="section-number">5. </span>Introducción a Markov Chain Monte Carlo<a class="headerlink" href="#introduccion-a-markov-chain-monte-carlo" title="Enlazar permanentemente con este título">¶</a></h1>
+<h1><span class="section-number">6. </span>Introducción a Markov Chain Monte Carlo<a class="headerlink" href="#introduccion-a-markov-chain-monte-carlo" title="Enlazar permanentemente con este título">¶</a></h1>
 <p>Las cadenas de Markov tienen dos usos principales. En primer lugar las cadenas de Markov se ocupan como <strong>modelo o aproximación de fenómenos que evolucionan en el tiempo</strong>. Esto es lo que vimos la lección anterior.</p>
 <p>En estos casos corresponde hacer la pregunta de si acaso el fenómeno que estoy estudiando cumple con la propiedad de Markov. Por ejemplo ¿Es la evolución del clima un proceso de Markov?</p>
 <p>En segundo lugar las cadenas de Markov son un <strong>componente fundamental de una clase de algoritmos conocidos como Markov Chain Monte Carlo</strong> (MCMC). El objetivo de MCMC es crear sintéticamente una cadena de Markov que converge a una distribución en la cual estamos interesados y que no podemos simular de forma analítica y/o explícita. MCMC es considerado una revolución en computación científica y tiene aplicaciones en prácticamente todos las disciplinas.</p>
 <p>En esta lección estudiaremos el algoritmos de Metropolis, una de las formulaciones originales de MCMC y también uno de los <a class="reference external" href="https://www.andrew.cmu.edu/course/15-355/misc/Top%20Ten%20Algorithms.html">diez algoritmos más importantes del Siglo XX</a>.</p>
 <div class="section" id="monte-carlo-y-muestreo-por-importancia-is">
-<h2><span class="section-number">5.1. </span>Monte Carlo y muestreo por importancia (IS)<a class="headerlink" href="#monte-carlo-y-muestreo-por-importancia-is" title="Enlazar permanentemente con este título">¶</a></h2>
+<h2><span class="section-number">6.1. </span>Monte Carlo y muestreo por importancia (IS)<a class="headerlink" href="#monte-carlo-y-muestreo-por-importancia-is" title="Enlazar permanentemente con este título">¶</a></h2>
 <p>MCMC es una poderosa herramienta para muestrear y calcular valores esperados a partir de distribuciones complejas. En este sentido es una extensión de la idea básica de Monte Carlo que vimos en las primeras lecciones.</p>
 <p>Recordemos, con Monte Carlo podemos estimar el valor esperado de una función <span class="math notranslate nohighlight">\(f(x)\)</span> en base a muestras usando</p>
 <div class="math notranslate nohighlight">
@@ -2448,7 +2453,7 @@ roTBs2RqAAAAAElFTkSuQmCC'
 <p>En este caso el problema tiene solución teórica conocida (linea punteada). El estimador basado en IS converge más rápido y con menos varianza que el estimador basado en Monte Carlo convencional</p>
 </div>
 <div class="section" id="limitaciones-de-is">
-<h3><span class="section-number">5.1.1. </span>Limitaciones de IS<a class="headerlink" href="#limitaciones-de-is" title="Enlazar permanentemente con este título">¶</a></h3>
+<h3><span class="section-number">6.1.1. </span>Limitaciones de IS<a class="headerlink" href="#limitaciones-de-is" title="Enlazar permanentemente con este título">¶</a></h3>
 <p>Las técnicas de muestreo por importancia (y muestreo por rechazo) permiten calcular valores esperados de distribuciones que puedo evaluar pero no muestrear. También vimos que favorece en la disminución de la varianza del estimador.</p>
 <p>Pero existen casos más complicados donde no es fácil utilizar IS</p>
 <ul class="simple">
@@ -2479,7 +2484,7 @@ p(D) = \int_\theta p(D, \theta) \,d\theta
 </div>
 </div>
 <div class="section" id="intuicion-de-mcmc">
-<h2><span class="section-number">5.2. </span>Intuición de MCMC<a class="headerlink" href="#intuicion-de-mcmc" title="Enlazar permanentemente con este título">¶</a></h2>
+<h2><span class="section-number">6.2. </span>Intuición de MCMC<a class="headerlink" href="#intuicion-de-mcmc" title="Enlazar permanentemente con este título">¶</a></h2>
 <p>En MCMC en lugar de muestrear de manera i.i.d., utilizamos una cadena de Markov que corresponde a la secuencia de pasos que damos en el espacio de alta dimensionalidad.</p>
 <p>En la siguiente figura la distribución de interés se muestra de color rojo. En la subfigura de la izquierda usamos una distribución de importancia simple (contorno verde). Muchos de los puntos tendrán un ponderador de importancia cercano a cero.</p>
 <a class="reference internal image-reference" href="../_images/is_mcmc.png"><img alt="../_images/is_mcmc.png" src="../_images/is_mcmc.png" style="width: 500px;" /></a>
@@ -2505,7 +2510,7 @@ p(D) = \int_\theta p(D, \theta) \,d\theta
 <p>A continuación veremos veremos que no necesitamos conocer “completamente” <span class="math notranslate nohighlight">\(\pi\)</span> para lograr esto, basta conocerlo hasta una constante.</p>
 </div>
 <div class="section" id="algoritmo-de-metropolis">
-<h2><span class="section-number">5.3. </span>Algoritmo de Metropolis<a class="headerlink" href="#algoritmo-de-metropolis" title="Enlazar permanentemente con este título">¶</a></h2>
+<h2><span class="section-number">6.3. </span>Algoritmo de Metropolis<a class="headerlink" href="#algoritmo-de-metropolis" title="Enlazar permanentemente con este título">¶</a></h2>
 <p>El algoritmo de Metropolis fue el primer algoritmo de tipo MCMC. Fue propuesto por Nicholas Metropolis, colega de Ulam y Von Neumann, <a class="reference external" href="https://www.semanticscholar.org/paper/Equation-of-state-calculations-by-fast-computing-Metropolis-Rosenbluth/f6a13f116e270dde9d67848495f801cdb8efa25d">en el año 1953 para entender la transición de fase que experimetan los materiales</a>. El paper original sentó las bases de lo que hoy conocemos como el algoritmo de Metropolis y el algoritmo de Simulated Annealing (SA)</p>
 <p>El algoritmo de Metropolis utiliza un random walk para definir las probabilidades de transición de la cadena. Sea</p>
 <div class="math notranslate nohighlight">
@@ -2605,7 +2610,7 @@ r = \frac{ p(\theta^*)q(\theta_{t}|\theta^*) }{ p(\theta_t)q(\theta^*|\theta_{t}
 </div>
 </div>
 <div class="section" id="algoritmo-de-metropolis-hastings">
-<h3><span class="section-number">5.3.1. </span>Algoritmo de Metropolis-Hastings<a class="headerlink" href="#algoritmo-de-metropolis-hastings" title="Enlazar permanentemente con este título">¶</a></h3>
+<h3><span class="section-number">6.3.1. </span>Algoritmo de Metropolis-Hastings<a class="headerlink" href="#algoritmo-de-metropolis-hastings" title="Enlazar permanentemente con este título">¶</a></h3>
 <p>El algoritmo de Metropolis-Hastings es una generalización del algoritmo de Metropolis para el caso donde la distribución de propuestas ya no es simétrica por lo que <span class="math notranslate nohighlight">\(r\)</span> es ahora</p>
 <div class="math notranslate nohighlight">
 \[
@@ -2615,7 +2620,7 @@ r = \frac{ p(\theta^*)q(\theta_{t}|\theta^*) }{ p(\theta_t)q(\theta^*|\theta_{t}
 </div>
 </div>
 <div class="section" id="mcmc-para-estimar-posteriors">
-<h2><span class="section-number">5.4. </span>MCMC para estimar posteriors<a class="headerlink" href="#mcmc-para-estimar-posteriors" title="Enlazar permanentemente con este título">¶</a></h2>
+<h2><span class="section-number">6.4. </span>MCMC para estimar posteriors<a class="headerlink" href="#mcmc-para-estimar-posteriors" title="Enlazar permanentemente con este título">¶</a></h2>
 <p>Si estamos interesados en un posterior <span class="math notranslate nohighlight">\(p(\theta_t|\mathcal{D})\)</span> cuya evidencia <span class="math notranslate nohighlight">\(p(\mathcal{D})\)</span> es difícil o imposible de calcular, podemos usar el algoritmo de Metropolis sin problema pues</p>
 <div class="math notranslate nohighlight">
 \[
@@ -2763,13 +2768,13 @@ p(\theta|\mathcal{D}) = \mathcal{N}\left ( \bar x (1- w_N) + \mu w_N , \tau_N^2 
         <i class="fas fa-angle-left"></i>
         <div class="prev-next-info">
             <p class="prev-next-subtitle">anterior</p>
-            <p class="prev-next-title"><span class="section-number">4. </span>Cadenas de Markov</p>
+            <p class="prev-next-title"><span class="section-number">5. </span>Cadenas de Markov</p>
         </div>
     </a>
     <a class='right-next' id="next-link" href="mcmc2.html" title="siguiente página">
     <div class="prev-next-info">
         <p class="prev-next-subtitle">siguiente</p>
-        <p class="prev-next-title"><span class="section-number">6. </span>Calibración y diagnóstico en MCMC</p>
+        <p class="prev-next-title"><span class="section-number">7. </span>Calibración y diagnóstico en MCMC</p>
     </div>
     <i class="fas fa-angle-right"></i>
     </a>
