@@ -187,8 +187,9 @@ hv.Overlay([p_med, p_iqr, hv.HLine(np.sqrt(pasos))])
 # 
 # Una persona llega al casino y comienza a jugar ruleta. Su estrategia de juego es siempre 
 # 
-# - apostarle $1.000$ pesos a los números pares si el resultado anterior fue impar
-# - apostarle $1.000$ pesos a los números impares si el resultado anterior fue par
+# - Jugar la primera apuesta a los pares
+# - Luego apostarle $1.000$ pesos a los números pares si el resultado anterior fue impar
+# - O apostarle $1.000$ pesos a los números impares si el resultado anterior fue par
 # 
 # En promedio:
 # 
@@ -217,7 +218,10 @@ class Ruleta():
         return cantidad*(ganancia - 1), bola
 
 
-# Simulemos 10 sesiones de juego bajo las condiciones anteriores. Las lineas de colores son la ganancia en cada una de las sesiones. La linea negra marca el promedio de las sesiones. 
+# Simulemos 10 sesiones de juego bajo las condiciones anteriores. En el gráfico:
+# 
+# - Las lineas de colores correspondan a la ganancia en cada una de las sesiones. 
+# - La linea negra corresponda al promedio de las sesiones. 
 
 # In[9]:
 
@@ -239,7 +243,7 @@ for k in range(10):
     for i in range(1, giros):
         if bola in pares:
             retornos[i], bola = casino_dreams.apostar(impares, dinero_apuesta)
-        else:
+        elif bola in impares:
             retornos[i], bola = casino_dreams.apostar(pares, dinero_apuesta)
             
     simulaciones.append(np.cumsum(retornos))
@@ -262,6 +266,10 @@ hv.Overlay(p) * hv.HLine(0) * hv.Curve((np.mean(simulaciones, axis=0))).opts(col
 # :::
 # 
 # Una ruleta de casino tiene además dos casilleros de color verde denominados "0" y "00". Si la bola cae en uno de estos casilleros la casa se lleva todo. ¿Cómo cambia el resultado anterior si agregamos estos casilleros?
+# 
+# Regla adicional para la estrategia del jugador: 
+# 
+# - En caso de observar '0' o '00' entonces el jugador mantiene su apuesta anterior
 
 # In[11]:
 
@@ -285,12 +293,14 @@ for k in range(10):
     retornos = np.zeros(shape=(giros,))
     # La primera apuesta es a par
     retornos[0], bola = casino_dreams.apostar(pares, dinero_apuesta)
+    last_bet = pares
     # Las apuestas siguientes dependen del resultado anterior de la ruleta
     for i in range(1, giros):
         if bola in pares:
-            retornos[i], bola = casino_dreams.apostar(impares, dinero_apuesta)
-        else:
-            retornos[i], bola = casino_dreams.apostar(pares, dinero_apuesta)
+            last_bet = impares
+        elif bola in impares:
+            last_bet = pares
+        retornos[i], bola = casino_dreams.apostar(last_bet, dinero_apuesta)
             
     simulaciones.append(np.cumsum(retornos))
 simulaciones = np.vstack(simulaciones)

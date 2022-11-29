@@ -77,13 +77,17 @@ import scipy.stats
 
 # :::{note}
 # 
-# Si salimos del estado $1$ o del estado $2$ ya no podemos volver a ellos. 
+# Si entramos a los estados 0 o 3, ya no podemos retornar a los estados 1 y 2. Este es un ejemplo de cadena **reducible**.
 # 
 # :::
 # 
-# Los estados a los cuales no podemos retornar se conocen como estados **transitorios** o transientes. Por el contrario los estados a los que si tenemos posibilidad de retornar se llaman estados **recurrentes**.
+# Definiciones: 
 # 
-# Cuando se tienen estados a los que no se puede retornar se dice que cadena es **reducible**. Por el contrario si podemos regresar a todos los estados se dice que la cadena es **irreducible**.
+# - Estados transitorios o transientes: Estados a los cuales podríamos no retornar eventualmente. 
+# - Estados recurrentes: Estados a los que siempre podríamos retornar. 
+# - Cadena reducible: Cadena que tiene al menos un estado transitorio.
+# - Cadena irreducible: Cadena donde todos sus estados son recurrentes.
+# 
 # 
 # :::{note}
 # 
@@ -177,7 +181,11 @@ np.dot(s0, np.linalg.matrix_power(P, 7))
 np.dot(s0, np.linalg.matrix_power(P, 1000))
 
 
+# :::{note}
+# 
 # Esto se conoce como el estado estacionario de la cadena.
+# 
+# :::
 
 # ## Estado estacionario de la cadena de Markov
 # 
@@ -218,15 +226,17 @@ np.dot(s0, np.linalg.matrix_power(P, 1000))
 # 
 # Que es lo que vimos antes. Esto nos dice que el largo plazo en un 60\% de los días lloverá y en el restante 40% estará soleado
 
+# ### Generalizando el ejemplo anterior
+# 
 # Una pregunta interesante a responder con una cadena de Markov es
 # 
 # > ¿Cuál es la probabilidad de llegar al estado $j$ dado que estoy en el estado $i$ si doy exactamente $n$ pasos?
 # 
-# Consideremos por ejemplo 
+# Consideremos ahora la cadena de Markov homogenea del siguiente diagrama:
 # 
 # <img src="images/markov3.png" width="400">
 # 
-# donde la matriz de transición es claramente
+# donde la matriz de transición es claramente:
 # 
 # $$
 # P = \begin{pmatrix} 1/2 & 1/4 & 1/4 \\ 
@@ -259,7 +269,7 @@ np.dot(P, P)[0, 2]
 
 # :::{important}
 # 
-# En general la probabilidad de llegar al estado $j$ desde el estado $i$ en $n$ pasos es equivalente al elemento en la fila $i$ y columna $j$ de la matriz $P^n$
+# La probabilidad de llegar al estado $j$ desde el estado $i$ en $n$ pasos es equivalente al elemento en la fila $i$ y columna $j$ de la matriz $P^n$
 # 
 # :::
 # 
@@ -273,7 +283,7 @@ display(np.linalg.matrix_power(P, 3),
         np.linalg.matrix_power(P, 100))
 
 
-# Todas las filas convergen a un mismo valor. Este conjunto de probabilidades se conoce como $\pi$ la distribución estacionaria de la cadena de Markov. Notar que las filas de $P^\infty$ convergen solo si la cadena es irreducible.
+# Todas las filas convergen a un mismo valor. Este conjunto de probabilidades se conoce como $\pi$ la distribución estacionaria de la cadena de Markov. Notar que las filas de $P^\infty$ convergen **solo si la cadena es irreducible.**
 # 
 # El elemento $\pi_j$ (es decir $P_{ij}^\infty$) nos da la probabilidad de estar en $j$ luego de infinitos pasos. Notar que el subíndice $i$ ya no tiene importancia, es decir que el punto de partida ya no tiene relevancia.
 
@@ -288,27 +298,36 @@ display(np.linalg.matrix_power(P, 3),
 # 
 # En este caso $T$ es el horizonte de la simulación. A continuación veremos como simular una cadena de Markov discreta usando Python
 
-# Digamos que tenemos una cadena con tres estados y que la fila de $P$ asociada a $X_n$ es $[0.7, 0.2, 0.1]$. Podemos usar `scipy.stats.multinomial` para generar una aleatoriamente una variable multinomial y luego aplicar el argumento máximo para obtener el índice del estado $X_{n+1}$
+# Digamos que tenemos una cadena con tres estados y que la fila de $P$ asociada a $X_n$ es $[0.7, 0.2, 0.1]$. 
+# 
+# Podemos usar `scipy.stats.multinomial` para generar aleatoriamente una variable multinomial y luego aplicar el argumento máximo para obtener el índice del estado $X_{n+1}$
 
 # In[11]:
 
 
-np.argmax(scipy.stats.multinomial.rvs(n=1, p=[0.7, 0.2, 0.1], size=1), axis=1)
+np.random.seed(12345)
+for i in range(3):
+    a = scipy.stats.multinomial.rvs(n=1, p=[0.7, 0.2, 0.1], size=1) 
+    print(a, np.argmax(a, axis=1))
 
 
-# Si repetimos esto 100 veces se obtiene la siguiente distribución para $X_{n+1}$
+# - Las muestras generadas por `scipy.stats.multinomial.rvs` son vectores en formato *one-hot*. Estos vectores tienen tantos componentes como estados. Tienen un sólo 1 en la posición del estado que fue seleccionado y las demás posiciones están rellenas con ceros
+# - El argumento máximo (`argmax`) del vector *one-hot* retorna el índice del estado seleccionado
+# 
+# Si repetimos esto 1000 veces se obtiene la siguiente distribución para $X_{n+1}$
 
 # In[12]:
 
 
-x = np.argmax(scipy.stats.multinomial.rvs(n=1, p=[0.7, 0.2, 0.1], size=100), axis=1)
-edges, bins = np.histogram(x, range=(np.amin(x)-0.5, np.amax(x)+0.5), bins=len(np.unique(x)))
+x = np.argmax(scipy.stats.multinomial.rvs(n=1, p=[0.7, 0.2, 0.1], size=1000), axis=1)
+edges, bins = np.histogram(x, range=(np.amin(x)-0.5, np.amax(x)+0.5), 
+                           bins=len(np.unique(x)), density=True)
 
 
 # In[13]:
 
 
-hv.Histogram((edges, bins), kdims='x', vdims='Frecuencia').opts(xticks=[0, 1, 2])
+hv.Histogram((edges, bins), kdims='x', vdims='Densidad').opts(xticks=[0, 1, 2])
 
 
 # Lo cual coincide con la fila de $P$ que utilizamos
@@ -326,11 +345,11 @@ P = np.array([[0.70, 0.30],
 n_chains = 1000
 horizon = 10
 states = np.zeros(shape=(n_chains, horizon+1), dtype='int')
-states[:, 0] = 1 # El estado inicial para todas las cadenas es 1
+states[:, 0] = 1 # El estado inicial para todas las cadenas es 1 (soleado: sb)
 
 for i in range(n_chains):
     for j in range(1, horizon+1):
-        states[i, j] = np.argmax(scipy.stats.multinomial.rvs(n=1, p=P[states[i, j-1], :], size=1))
+        states[i, j] = np.argmax(scipy.stats.multinomial.rvs(n=1, p=P[states[i, j-1], :], size=1), axis=1)[0]
 
 
 # A continuación se muestran las tres primeras simulaciones como series de tiempo
@@ -340,11 +359,13 @@ for i in range(n_chains):
 
 p =[]
 for i in range(3):
-    p.append(hv.Curve((states[i, :]), 'n', 'Estados', label=f'Cadena {i}').opts(yticks=[0, 1], alpha=0.75, line_width=3))
+    p.append(hv.Curve((states[i, :]), 'n', 'Estados', label=f'Cadena {i}').opts(yticks=[0, 1], 
+                                                                                xticks=list(range(11)),
+                                                                                alpha=0.75, line_width=3))
 hv.Overlay(p).opts(hv.opts.Overlay(legend_position='top'))
 
 
-# A continuación se muestra la evolución de la probabilidad de cada estado
+# A continuación se muestra la evolución de la probabilidad asociada a cada estado a lo largo de la cadena
 
 # In[16]:
 
@@ -359,10 +380,12 @@ for j in range(horizon+1):
 # In[17]:
 
 
-p0 = hv.Curve((hist[:,0]/np.sum(hist,axis=1)), 'n', 'Probabilidad',label='Estado 0')
-p1 = hv.Curve((hist[:,1]/np.sum(hist,axis=1)), 'n', 'Probabilidad',label='Estado 1')
-hv.Overlay([p0, p1]).opts(legend_position='top')
+p0 = hv.Curve((hist[:,0]/np.sum(hist,axis=1)), 'n', 'Probabilidad',label='Estado 0 (lluvioso)')
+p1 = hv.Curve((hist[:,1]/np.sum(hist,axis=1)), 'n', 'Probabilidad',label='Estado 1 (soleado)')
+hv.Overlay([p0, p1]).opts(legend_position='top', xticks=list(range(11)))
 
+
+# Las probabilidades convergen de cada estado convergen a los valores que vimos anteriormente.
 
 # ## Ley de los grandes números para variables no i.i.d.
 # 
